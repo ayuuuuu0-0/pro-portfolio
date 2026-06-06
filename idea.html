@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ayush Ranjan | Software Engineer</title>
+<meta name="description" content="Ayush Ranjan — backend and full-stack engineer. I build distributed systems, developer tools, and web apps.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --bg:#080b0f;
+    --surface:#0d1117;
+    --surface2:#131920;
+    --border:#1e2a35;
+    --border2:#253344;
+    --text:#e8edf2;
+    --muted:#5a7080;
+    --accent:#00d4aa;
+    --accent2:#0099ff;
+    --accent-dim:rgba(0,212,170,0.08);
+    --accent-border:rgba(0,212,170,0.25);
+    --mono:'Space Mono',monospace;
+    --sans:'Syne',sans-serif;
+  }
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--sans);
+    font-size:16px;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+
+  /* grid noise texture */
+  body::before{
+    content:'';
+    position:fixed;
+    inset:0;
+    background-image:
+      linear-gradient(rgba(0,212,170,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,212,170,0.015) 1px, transparent 1px);
+    background-size:60px 60px;
+    pointer-events:none;
+    z-index:0;
+  }
+
+  /* NAV */
+  nav{
+    position:fixed;
+    top:0;left:0;right:0;
+    z-index:100;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:1rem 2.5rem;
+    border-bottom:1px solid var(--border);
+    background:rgba(8,11,15,0.85);
+    backdrop-filter:blur(12px);
+  }
+  .nav-logo{
+    font-family:var(--mono);
+    font-size:14px;
+    color:var(--accent);
+    text-decoration:none;
+    letter-spacing:0.08em;
+  }
+  .nav-links{display:flex;gap:2rem;list-style:none}
+  .nav-links a{
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--muted);
+    text-decoration:none;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    transition:color 0.2s;
+  }
+  .nav-links a:hover{color:var(--accent)}
+  .nav-socials{display:flex;gap:1rem}
+  .nav-socials a{
+    color:var(--muted);
+    text-decoration:none;
+    font-size:13px;
+    transition:color 0.2s;
+  }
+  .nav-socials a:hover{color:var(--accent)}
+
+  /* SECTIONS */
+  section{position:relative;z-index:1}
+
+  /* HERO */
+  #hero{
+    min-height:100vh;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    align-items:center;
+    padding:0 10vw;
+    gap:4rem;
+  }
+  .hero-left{padding-top:5rem}
+  .hero-tag{
+    font-family:var(--mono);
+    font-size:11px;
+    color:var(--accent);
+    letter-spacing:0.15em;
+    text-transform:uppercase;
+    border:1px solid var(--accent-border);
+    background:var(--accent-dim);
+    padding:4px 12px;
+    border-radius:2px;
+    display:inline-block;
+    margin-bottom:1.5rem;
+  }
+  .hero-name{
+    font-family:var(--sans);
+    font-size:clamp(3rem, 6vw, 5.5rem);
+    font-weight:800;
+    line-height:1.0;
+    letter-spacing:-0.03em;
+    color:var(--text);
+    margin-bottom:0.4rem;
+  }
+  .hero-name span{color:var(--accent)}
+  .hero-role{
+    font-family:var(--mono);
+    font-size:13px;
+    color:var(--muted);
+    margin-bottom:1.8rem;
+    letter-spacing:0.05em;
+  }
+  .hero-desc{
+    font-size:15px;
+    color:#8fa3b0;
+    line-height:1.8;
+    max-width:440px;
+    margin-bottom:2.5rem;
+  }
+  .hero-desc strong{color:var(--text);font-weight:600}
+  .hero-cta{display:flex;gap:1rem;flex-wrap:wrap}
+  .btn{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:0.08em;
+    padding:10px 22px;
+    text-decoration:none;
+    border-radius:2px;
+    transition:all 0.2s;
+    text-transform:uppercase;
+  }
+  .btn-primary{
+    background:var(--accent);
+    color:#080b0f;
+    font-weight:700;
+    border:1px solid var(--accent);
+  }
+  .btn-primary:hover{background:transparent;color:var(--accent)}
+  .btn-ghost{
+    border:1px solid var(--border2);
+    color:var(--muted);
+  }
+  .btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+
+  /* terminal block */
+  .hero-right{padding-top:5rem;display:flex;justify-content:flex-end}
+  .terminal{
+    background:var(--surface);
+    border:1px solid var(--border2);
+    border-radius:6px;
+    width:420px;
+    font-family:var(--mono);
+    font-size:12px;
+    overflow:hidden;
+  }
+  .terminal-bar{
+    background:var(--surface2);
+    padding:10px 14px;
+    display:flex;
+    align-items:center;
+    gap:6px;
+    border-bottom:1px solid var(--border);
+  }
+  .dot{width:10px;height:10px;border-radius:50%}
+  .dot.r{background:#ff5f56}
+  .dot.y{background:#ffbd2e}
+  .dot.g{background:#27c93f}
+  .terminal-title{
+    margin-left:auto;color:var(--muted);font-size:11px;letter-spacing:0.05em;
+  }
+  .terminal-body{padding:1.2rem 1.4rem;line-height:2}
+  .t-muted{color:var(--muted)}
+  .t-green{color:var(--accent)}
+  .t-blue{color:#60a0ff}
+  .t-yellow{color:#f0c060}
+  .t-pink{color:#f080b0}
+  .cursor{
+    display:inline-block;width:7px;height:13px;
+    background:var(--accent);vertical-align:middle;
+    animation:blink 1s step-end infinite;
+  }
+  @keyframes blink{50%{opacity:0}}
+
+  /* STATS */
+  .stats-row{
+    display:flex;
+    gap:0;
+    border-top:1px solid var(--border);
+    border-bottom:1px solid var(--border);
+    margin:0 10vw;
+  }
+  .stat{
+    flex:1;
+    padding:2rem 0;
+    text-align:center;
+    border-right:1px solid var(--border);
+  }
+  .stat:last-child{border-right:none}
+  .stat-num{
+    font-family:var(--sans);
+    font-size:2.5rem;
+    font-weight:800;
+    color:var(--accent);
+    line-height:1;
+    margin-bottom:0.4rem;
+    letter-spacing:-0.03em;
+  }
+  .stat-label{
+    font-family:var(--mono);
+    font-size:10px;
+    color:var(--muted);
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+  }
+
+  /* ABOUT */
+  #about{padding:7rem 10vw;display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start}
+  .section-tag{
+    font-family:var(--mono);
+    font-size:11px;
+    color:var(--accent);
+    letter-spacing:0.15em;
+    text-transform:uppercase;
+    margin-bottom:1rem;
+    display:block;
+  }
+  .section-title{
+    font-size:clamp(2rem, 4vw, 3rem);
+    font-weight:800;
+    line-height:1.1;
+    letter-spacing:-0.02em;
+    margin-bottom:1.5rem;
+  }
+  .about-text{font-size:14px;color:#8fa3b0;line-height:1.9;margin-bottom:1rem}
+  .about-text strong{color:var(--text);font-weight:600}
+
+  /* skills */
+  .skills-section{margin-top:0.5rem}
+  .skill-category{margin-bottom:1.8rem}
+  .skill-cat-label{
+    font-family:var(--mono);
+    font-size:10px;
+    color:var(--muted);
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    margin-bottom:0.7rem;
+  }
+  .skill-chips{display:flex;flex-wrap:wrap;gap:6px}
+  .chip{
+    font-family:var(--mono);
+    font-size:11px;
+    padding:4px 10px;
+    border:1px solid var(--border2);
+    border-radius:2px;
+    color:#8fa3b0;
+    letter-spacing:0.04em;
+    transition:all 0.15s;
+  }
+  .chip:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-dim)}
+  .chip.primary{border-color:rgba(0,212,170,0.35);color:var(--accent);background:var(--accent-dim)}
+
+  /* EXPERIENCE */
+  #experience{padding:7rem 10vw}
+  #experience .section-title{margin-bottom:3rem}
+  .timeline{position:relative;padding-left:1.5rem}
+  .timeline::before{
+    content:'';
+    position:absolute;
+    left:0;top:0;bottom:0;
+    width:1px;
+    background:linear-gradient(180deg,var(--accent) 0%,var(--border) 100%);
+  }
+  .tl-item{
+    position:relative;
+    padding-bottom:2.5rem;
+    padding-left:1.5rem;
+  }
+  .tl-dot{
+    position:absolute;
+    left:-1.95rem;
+    top:4px;
+    width:10px;height:10px;
+    border-radius:50%;
+    border:1px solid var(--accent);
+    background:var(--bg);
+  }
+  .tl-dot.active{background:var(--accent)}
+  .tl-meta{
+    font-family:var(--mono);
+    font-size:11px;
+    color:var(--muted);
+    margin-bottom:0.4rem;
+    letter-spacing:0.05em;
+  }
+  .tl-company{
+    font-size:16px;
+    font-weight:700;
+    color:var(--text);
+    margin-bottom:0.3rem;
+  }
+  .tl-company a{color:var(--accent);text-decoration:none}
+  .tl-company a:hover{text-decoration:underline}
+  .tl-desc{font-size:13px;color:#6a8090;line-height:1.8}
+  .tl-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:0.6rem}
+  .tl-tag{
+    font-family:var(--mono);
+    font-size:10px;
+    padding:2px 8px;
+    border:1px solid var(--border2);
+    border-radius:2px;
+    color:var(--muted);
+  }
+
+  /* PROJECTS */
+  #projects{padding:7rem 10vw}
+  #projects .section-title{margin-bottom:3rem}
+  .projects-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(340px,1fr));
+    gap:1.5px;
+    border:1px solid var(--border);
+  }
+  .project-card{
+    background:var(--surface);
+    padding:1.8rem;
+    border:none;
+    position:relative;
+    transition:background 0.2s;
+    cursor:default;
+  }
+  .project-card:hover{background:var(--surface2)}
+  .project-card::after{
+    content:'';
+    position:absolute;
+    inset:0;
+    border:1px solid transparent;
+    transition:border-color 0.2s;
+    pointer-events:none;
+  }
+  .project-card:hover::after{border-color:var(--accent-border)}
+  .project-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1rem}
+  .project-badge{
+    font-family:var(--mono);
+    font-size:9px;
+    padding:2px 8px;
+    border-radius:2px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+  }
+  .badge-featured{background:rgba(0,212,170,0.1);color:var(--accent);border:1px solid var(--accent-border)}
+  .badge-backend{background:rgba(0,153,255,0.1);color:#60a0ff;border:1px solid rgba(0,153,255,0.25)}
+  .badge-flutter{background:rgba(100,80,200,0.1);color:#9080e0;border:1px solid rgba(100,80,200,0.25)}
+  .badge-fullstack{background:rgba(240,160,60,0.1);color:#e0a040;border:1px solid rgba(240,160,60,0.25)}
+  .project-links{display:flex;gap:0.6rem}
+  .project-link{
+    font-family:var(--mono);
+    font-size:11px;
+    color:var(--muted);
+    text-decoration:none;
+    border:1px solid var(--border2);
+    padding:3px 9px;
+    border-radius:2px;
+    transition:all 0.15s;
+  }
+  .project-link:hover{color:var(--accent);border-color:var(--accent-border)}
+  .project-name{
+    font-size:18px;
+    font-weight:700;
+    color:var(--text);
+    margin-bottom:0.5rem;
+  }
+  .project-desc{font-size:13px;color:#6a8090;line-height:1.75;margin-bottom:1rem}
+  .project-stack{display:flex;flex-wrap:wrap;gap:5px}
+  .stack-tag{
+    font-family:var(--mono);
+    font-size:10px;
+    color:var(--muted);
+    padding:2px 7px;
+    border:1px solid var(--border);
+    border-radius:2px;
+  }
+
+  /* CONTACT / FOOTER */
+  #contact{
+    padding:7rem 10vw 5rem;
+    text-align:center;
+    border-top:1px solid var(--border);
+  }
+  .contact-email{
+    font-family:var(--mono);
+    font-size:clamp(1.1rem, 3vw, 2rem);
+    color:var(--accent);
+    text-decoration:none;
+    border-bottom:1px solid var(--accent-border);
+    padding-bottom:2px;
+    transition:border-color 0.2s;
+  }
+  .contact-email:hover{border-color:var(--accent)}
+  .footer-line{
+    margin-top:4rem;
+    padding-top:1.5rem;
+    border-top:1px solid var(--border);
+    font-family:var(--mono);
+    font-size:11px;
+    color:var(--muted);
+    display:flex;
+    justify-content:space-between;
+  }
+  .footer-socials{display:flex;gap:1.5rem}
+  .footer-socials a{
+    color:var(--muted);
+    text-decoration:none;
+    font-size:11px;
+    letter-spacing:0.05em;
+    transition:color 0.15s;
+  }
+  .footer-socials a:hover{color:var(--accent)}
+
+  /* glow orb */
+  .orb{
+    position:fixed;
+    width:600px;height:600px;
+    border-radius:50%;
+    pointer-events:none;
+    z-index:0;
+    filter:blur(120px);
+    background:radial-gradient(circle, rgba(0,212,170,0.06) 0%, transparent 70%);
+    top:-100px;right:-100px;
+  }
+
+  @media(max-width:900px){
+    #hero{grid-template-columns:1fr;padding:0 6vw;min-height:auto;padding-top:7rem;padding-bottom:4rem}
+    .hero-right{justify-content:flex-start}
+    .terminal{width:100%}
+    #about{grid-template-columns:1fr;gap:3rem;padding:5rem 6vw}
+    #experience,#projects,#contact{padding-left:6vw;padding-right:6vw}
+    .stats-row{margin:0 6vw}
+    nav{padding:1rem 6vw}
+    .nav-socials{display:none}
+    .projects-grid{grid-template-columns:1fr}
+    .footer-line{flex-direction:column;gap:1rem;text-align:center}
+    .footer-socials{justify-content:center}
+  }
+</style>
+</head>
+<body>
+
+<div class="orb"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">AR</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-socials">
+    <a href="https://github.com/ayuuuuu0-0" target="_blank">GitHub</a>
+    <a href="https://www.linkedin.com/in/ayush-ranjan019/" target="_blank">LinkedIn</a>
+    <a href="https://x.com/Ayuuuu_25" target="_blank">X</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <span class="hero-tag">Available for work</span>
+    <h1 class="hero-name">Ayush<br><span>Ranjan</span></h1>
+    <p class="hero-role">// Software Engineer &middot; Backend &middot; Distributed Systems</p>
+    <p class="hero-desc">
+      I build things that run at scale. Currently interning at <strong>Omniful</strong>, working on distributed OMS/WMS infrastructure. I write <strong>Go</strong>, JavaScript, and enough Python to be dangerous.
+    </p>
+    <div class="hero-cta">
+      <a href="https://drive.google.com/file/d/1QwagGnnmk91a73VUc_yp1dcnJIE7sIgX/view?usp=sharing" target="_blank" class="btn btn-primary">Resume</a>
+      <a href="#contact" class="btn btn-ghost">Get in touch</a>
+      <a href="#projects" class="btn btn-ghost">See work</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="terminal">
+      <div class="terminal-bar">
+        <div class="dot r"></div>
+        <div class="dot y"></div>
+        <div class="dot g"></div>
+        <span class="terminal-title">ayush@dev:~</span>
+      </div>
+      <div class="terminal-body">
+        <div><span class="t-muted">~</span> <span class="t-green">whoami</span></div>
+        <div><span class="t-blue">Ayush Ranjan</span> <span class="t-muted">// SDE Intern @Omniful</span></div>
+        <div>&nbsp;</div>
+        <div><span class="t-muted">~</span> <span class="t-green">cat skills.json</span></div>
+        <div><span class="t-yellow">"primary"</span><span class="t-muted">:</span> <span class="t-pink">["Go", "JS", "TypeScript"]</span></div>
+        <div><span class="t-yellow">"infra"</span><span class="t-muted">:</span> <span class="t-pink">["Kafka", "K8s", "Docker"]</span></div>
+        <div><span class="t-yellow">"db"</span><span class="t-muted">:</span> <span class="t-pink">["PostgreSQL", "MongoDB", "Redis"]</span></div>
+        <div>&nbsp;</div>
+        <div><span class="t-muted">~</span> <span class="t-green">git log --oneline -3</span></div>
+        <div><span class="t-blue">a3f9c1e</span> <span class="t-muted">feat: multi-tenant tracking pipeline</span></div>
+        <div><span class="t-blue">7bd2e0a</span> <span class="t-muted">perf: bulk APIs ~80% faster</span></div>
+        <div><span class="t-blue">c12f4b8</span> <span class="t-muted">feat: kafka consumer at-least-once</span></div>
+        <div>&nbsp;</div>
+        <div><span class="t-muted">~</span> <span class="t-green">_</span><span class="cursor"></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-row">
+  <div class="stat"><div class="stat-num">10+</div><div class="stat-label">Projects</div></div>
+  <div class="stat"><div class="stat-num">4</div><div class="stat-label">Companies</div></div>
+  <div class="stat"><div class="stat-num">3+</div><div class="stat-label">Years coding</div></div>
+  <div class="stat"><div class="stat-num">EE</div><div class="stat-label">YMCA Faridabad</div></div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div>
+    <span class="section-tag">// about me</span>
+    <h2 class="section-title">I build backend systems.<br>Sometimes the front too.</h2>
+    <p class="about-text">
+      I'm a final-year EE student at <strong>YMCA Faridabad</strong> and a software engineer who leans backend-heavy. I've been building production systems since 2023 — started with Flutter and React, now mostly working in Go and distributed systems.
+    </p>
+    <p class="about-text">
+      Right now I'm at <strong>Omniful</strong>, building cross-service volumetric weight calculations and multi-tenant tracking pipelines. Before that I worked at Miracuves (mobile), PeriData (React), and NowAcquire (Flutter + stock trading).
+    </p>
+    <p class="about-text">
+      I'm comfortable across the stack, but what I care about is correctness, performance, and systems that don't fall over at 3am.
+    </p>
+  </div>
+  <div class="skills-section">
+    <span class="section-tag">// skills</span>
+    <div class="skill-category">
+      <p class="skill-cat-label">Primary</p>
+      <div class="skill-chips">
+        <span class="chip primary">Go</span>
+        <span class="chip primary">JavaScript</span>
+        <span class="chip primary">TypeScript</span>
+        <span class="chip primary">Python</span>
+        <span class="chip primary">NodeJS</span>
+        <span class="chip primary">ReactJS</span>
+        <span class="chip primary">NextJS</span>
+      </div>
+    </div>
+    <div class="skill-category">
+      <p class="skill-cat-label">Infrastructure</p>
+      <div class="skill-chips">
+        <span class="chip">Kafka</span>
+        <span class="chip">Kubernetes</span>
+        <span class="chip">Docker</span>
+        <span class="chip">AWS</span>
+        <span class="chip">Redis</span>
+      </div>
+    </div>
+    <div class="skill-category">
+      <p class="skill-cat-label">Databases</p>
+      <div class="skill-chips">
+        <span class="chip">PostgreSQL</span>
+        <span class="chip">MongoDB</span>
+      </div>
+    </div>
+    <div class="skill-category">
+      <p class="skill-cat-label">Previously</p>
+      <div class="skill-chips">
+        <span class="chip">Flutter</span>
+        <span class="chip">Java</span>
+        <span class="chip">C++</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <span class="section-tag">// experience</span>
+  <h2 class="section-title">Where I've worked</h2>
+  <div class="timeline">
+
+    <div class="tl-item">
+      <div class="tl-dot active"></div>
+      <p class="tl-meta">Aug 2025 &mdash; Present &middot; Gurugram, Haryana</p>
+      <p class="tl-company">SDE Intern &mdash; <a href="https://www.omniful.ai" target="_blank">Omniful</a></p>
+      <p class="tl-desc">Built cross-service volumetric weight calculation across OMS, WMS, and shipping with data-consistency contracts. Developed multi-tenant white-label tracking with per-tenant branding and runtime hub address resolution. Optimized bulk customer APIs (~80% faster) and owned Kafka consumer group integrations in an event-sourcing architecture with reliable at-least-once processing.</p>
+      <div class="tl-tags">
+        <span class="tl-tag">Go</span>
+        <span class="tl-tag">Kafka</span>
+        <span class="tl-tag">Kubernetes</span>
+        <span class="tl-tag">Event Sourcing</span>
+        <span class="tl-tag">Multi-tenancy</span>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <p class="tl-meta">May 2024 &mdash; Oct 2024 &middot; Remote</p>
+      <p class="tl-company">SDE Intern &mdash; <a href="https://www.miracuves.com" target="_blank">Miracuves Solutions</a></p>
+      <p class="tl-desc">Cut app load time by 40% via lazy loading, widget isolation, and overdraw elimination. Built live chat with WebSocket and HTTP polling fallback, handling reconnect logic and real-time state sync.</p>
+      <div class="tl-tags">
+        <span class="tl-tag">Flutter</span>
+        <span class="tl-tag">WebSocket</span>
+        <span class="tl-tag">Performance</span>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <p class="tl-meta">March 2024 &mdash; April 2024 &middot; Remote</p>
+      <p class="tl-company">React Developer Intern &mdash; <a href="https://peridata.tech/" target="_blank">PeriData</a></p>
+      <p class="tl-desc">Contributed to the company's web platform. Worked on real-world React projects, deepening production coding practices and team collaboration.</p>
+      <div class="tl-tags">
+        <span class="tl-tag">React</span>
+        <span class="tl-tag">JavaScript</span>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <p class="tl-meta">June 2023 &mdash; Aug 2023 &middot; Remote</p>
+      <p class="tl-company">SDE Intern &mdash; <a href="https://www.nowacquire.com" target="_blank">NowAcquire</a></p>
+      <p class="tl-desc">Built a Flutter stock trading app with real-time price feeds, JWT auth, KYC validation, and MongoDB aggregation pipelines for portfolio queries.</p>
+      <div class="tl-tags">
+        <span class="tl-tag">Flutter</span>
+        <span class="tl-tag">MongoDB</span>
+        <span class="tl-tag">JWT</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <span class="section-tag">// projects</span>
+  <h2 class="section-title">Things I've built</h2>
+  <div class="projects-grid">
+
+    <div class="project-card">
+      <div class="project-top">
+        <span class="project-badge badge-featured">Featured</span>
+        <div class="project-links">
+          <a href="https://github.com/ayuuuuu0-0/event_arcade" target="_blank" class="project-link">GitHub</a>
+          <a href="https://eventarcade.vercel.app" target="_blank" class="project-link">Live</a>
+        </div>
+      </div>
+      <p class="project-name">Event Arcade</p>
+      <p class="project-desc">Real-time arcade engine on a single-writer goroutine pattern. Match engines push events via channels to one append-only log, eliminating lock contention. Deterministic seeded RNG for auditable outcomes. SHA-256 chained block store for tamper detection, Redis sorted sets for sub-100ms leaderboard updates.</p>
+      <div class="project-stack">
+        <span class="stack-tag">Go</span>
+        <span class="stack-tag">WebSocket</span>
+        <span class="stack-tag">Redis</span>
+        <span class="stack-tag">Goroutines</span>
+        <span class="stack-tag">SHA-256</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-top">
+        <span class="project-badge badge-backend">Backend</span>
+        <div class="project-links">
+          <a href="https://github.com/ayuuuuu0-0/loadbalancer_go" target="_blank" class="project-link">GitHub</a>
+        </div>
+      </div>
+      <p class="project-name">Load Balancer</p>
+      <p class="project-desc">Custom HTTP load balancer written in Go. Supports round-robin and least-connections strategies with configurable health checks and automatic backend failover.</p>
+      <div class="project-stack">
+        <span class="stack-tag">Go</span>
+        <span class="stack-tag">HTTP</span>
+        <span class="stack-tag">Networking</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-top">
+        <span class="project-badge badge-backend">Backend</span>
+        <div class="project-links">
+          <a href="https://github.com/ayuuuuu0-0/qcache" target="_blank" class="project-link">GitHub</a>
+        </div>
+      </div>
+      <p class="project-name">Qcache</p>
+      <p class="project-desc">In-memory caching layer built in Go with TTL support, LRU eviction, and a simple HTTP API. Built to understand how caching systems handle key expiry and memory pressure.</p>
+      <div class="project-stack">
+        <span class="stack-tag">Go</span>
+        <span class="stack-tag">LRU</span>
+        <span class="stack-tag">HTTP API</span>
+        <span class="stack-tag">TTL</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-top">
+        <span class="project-badge badge-fullstack">Full-Stack</span>
+        <div class="project-links">
+          <a href="https://github.com/ayuuuuu0-0/focus" target="_blank" class="project-link">GitHub</a>
+          <a href="https://focus-right.vercel.app" target="_blank" class="project-link">Live</a>
+        </div>
+      </div>
+      <p class="project-name">Focus</p>
+      <p class="project-desc">Productivity app for clean task management. Plan your day, manage priorities, and track what matters with a minimal, distraction-free UI.</p>
+      <div class="project-stack">
+        <span class="stack-tag">React</span>
+        <span class="stack-tag">NextJS</span>
+        <span class="stack-tag">Tailwind</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-top">
+        <span class="project-badge badge-fullstack">Full-Stack</span>
+        <div class="project-links">
+          <a href="https://github.com/ayuuuuu0-0/jobify" target="_blank" class="project-link">GitHub</a>
+        </div>
+      </div>
+      <p class="project-name">Jobify</p>
+      <p class="project-desc">React-based job seeking web app with TanStack Query, user authentication, profiles, and job posting/accepting flow.</p>
+      <div class="project-stack">
+        <span class="stack-tag">React</span>
+        <span class="stack-tag">TanStack Query</span>
+        <span class="stack-tag">Auth</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-top">
+        <span class="project-badge badge-fullstack">Full-Stack</span>
+        <div class="project-links">
+          <a href="https://github.com/ayuuuuu0-0/news-app" target="_blank" class="project-link">GitHub</a>
+        </div>
+      </div>
+      <p class="project-name">NewsMania</p>
+      <p class="project-desc">News aggregator that fetches and categorizes headlines from multiple sources. Includes search, category filters, and a clean reading interface.</p>
+      <div class="project-stack">
+        <span class="stack-tag">React</span>
+        <span class="stack-tag">News API</span>
+        <span class="stack-tag">JavaScript</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-top">
+        <span class="project-badge badge-fullstack">Hackathon</span>
+        <div class="project-links">
+          <a href="https://github.com/ayuuuuu0-0/SheSecure" target="_blank" class="project-link">GitHub</a>
+        </div>
+      </div>
+      <p class="project-name">SheSecure</p>
+      <p class="project-desc">Safety app with real-time location sharing, SOS alerts, and contact notification via SMS. Built during a hackathon.</p>
+      <div class="project-stack">
+        <span class="stack-tag">React Native</span>
+        <span class="stack-tag">GPS</span>
+        <span class="stack-tag">SMS API</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-top">
+        <span class="project-badge badge-flutter">Flutter (archived)</span>
+        <div class="project-links">
+          <a href="https://github.com/ayuuuuu0-0/Uniconnect" target="_blank" class="project-link">GitHub</a>
+          <a href="https://college-cart.vercel.app/" target="_blank" class="project-link">Live</a>
+        </div>
+      </div>
+      <p class="project-name">College Cart</p>
+      <p class="project-desc">Flutter marketplace for college students to buy and sell goods. User auth, profiles, and multimedia post creation. Built in 2023 when Flutter was the primary focus.</p>
+      <div class="project-stack">
+        <span class="stack-tag">Flutter</span>
+        <span class="stack-tag">Firebase</span>
+        <span class="stack-tag">Auth</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-top">
+        <span class="project-badge badge-flutter">Flutter (archived)</span>
+        <div class="project-links">
+          <a href="https://github.com/ayuuuuu0-0/now-acquire" target="_blank" class="project-link">GitHub</a>
+        </div>
+      </div>
+      <p class="project-name">NowAcquire App</p>
+      <p class="project-desc">Flutter stock trading app built during my 2023 internship. Real-time price feeds, JWT auth, KYC validation flow, and MongoDB aggregation pipelines for portfolio queries.</p>
+      <div class="project-stack">
+        <span class="stack-tag">Flutter</span>
+        <span class="stack-tag">MongoDB</span>
+        <span class="stack-tag">JWT</span>
+        <span class="stack-tag">WebSocket</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <span class="section-tag">// contact</span>
+  <h2 class="section-title" style="margin-bottom:1rem">Got a project in mind?</h2>
+  <p style="color:var(--muted);font-size:14px;margin-bottom:2rem;font-family:var(--mono)">I'm open to full-time roles and interesting contracts.</p>
+  <a href="mailto:ranaayush0725@gmail.com" class="contact-email">ranaayush0725@gmail.com</a>
+  <div class="footer-line">
+    <span>Built by Ayush Ranjan &mdash; 2025</span>
+    <div class="footer-socials">
+      <a href="https://github.com/ayuuuuu0-0" target="_blank">GitHub</a>
+      <a href="https://www.linkedin.com/in/ayush-ranjan019/" target="_blank">LinkedIn</a>
+      <a href="https://x.com/Ayuuuu_25" target="_blank">X / Twitter</a>
+      <a href="https://discord.com/users/753159553649999914" target="_blank">Discord</a>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click',e=>{
+      e.preventDefault();
+      const t=document.querySelector(a.getAttribute('href'));
+      if(t) t.scrollIntoView({behavior:'smooth'});
+    });
+  });
+</script>
+</body>
+</html>
