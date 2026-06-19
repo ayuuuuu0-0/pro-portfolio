@@ -74,6 +74,18 @@ export type ProjectBadge = "featured" | "backend" | "fullstack" | "flutter" | "h
 
 export const PROJECTS = [
   {
+    name: "Prepio",
+    badge: "featured" as ProjectBadge,
+    badgeLabel: "Featured",
+    description:
+      "Architected a 6-service Go microservices backend for a gamified career progression platform. Integrated PostgreSQL with automated schema migrations, implemented Redis-based caching and rate-limiting, and utilized Kafka for event-driven messaging. Built a concept-level evaluation",
+    stack: ["Go", "NextJS", "Flutter", "Postgres", "Redis", "Kafka"],
+    links: {
+      github: "https://github.com/ayuuuuu0-0/prepio",
+      live: "http://prepio-ai.vercel.app/",
+    },
+  },
+  {
     name: "Event Arcade",
     badge: "featured" as ProjectBadge,
     badgeLabel: "Featured",
