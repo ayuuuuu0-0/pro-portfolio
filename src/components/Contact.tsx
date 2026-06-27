@@ -265,14 +265,14 @@ export default function Contact() {
     },
   ]);
   const [inputVal, setInputVal] = useState("");
-  const terminalEndRef = useRef<HTMLDivElement>(null);
+  const terminalBodyRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const quickCommands = ["help", "whoami", "contact", "status", "clear"];
 
   useEffect(() => {
-    if (terminalEndRef.current) {
-      terminalEndRef.current.scrollIntoView({ behavior: "smooth" });
+    if (terminalBodyRef.current) {
+      terminalBodyRef.current.scrollTop = terminalBodyRef.current.scrollHeight;
     }
   }, [history]);
 
@@ -434,6 +434,7 @@ export default function Contact() {
             <span>visitor@ayush: ~</span>
           </div>
           <div
+            ref={terminalBodyRef}
             className="contact-terminal-body"
             style={{
               maxHeight: "350px",
@@ -460,7 +461,6 @@ export default function Contact() {
                 )}
               </div>
             ))}
-            <div ref={terminalEndRef} />
 
             {/* Input Line */}
             <form onSubmit={handleFormSubmit} style={{ display: "flex", alignItems: "center", marginTop: "8px" }}>
