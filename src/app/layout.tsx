@@ -1,24 +1,19 @@
 import type { Metadata } from "next";
-import { Space_Mono, Syne } from "next/font/google";
+import { DM_Mono } from "next/font/google";
+import Cursor from "@/components/Cursor";
 import "./globals.css";
 
-const spaceMono = Space_Mono({
-  variable: "--font-space-mono",
+const dmMono = DM_Mono({
+  variable: "--font-dm-mono",
   subsets: ["latin"],
-  weight: ["400", "700"],
-  style: ["normal", "italic"],
-});
-
-const syne = Syne({
-  variable: "--font-syne",
-  subsets: ["latin"],
-  weight: ["400", "600", "700", "800"],
+  weight: ["300", "400", "500"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Ayush Ranjan | Software Engineer",
+  title: "Ayush Ranjan | System Architect",
   description:
-    "Ayush Ranjan — full-stack engineer who designs distributed backend systems. Building production infrastructure, developer tools, and web apps.",
+    "Ayush Ranjan — SDE Intern @Omniful. Building distributed OMS/WMS systems, white-label tracking pipelines, and high-performance backend platforms.",
 };
 
 export default function RootLayout({
@@ -27,8 +22,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${spaceMono.variable} ${syne.variable}`}>
-      <body>{children}</body>
+    <html lang="en" className={dmMono.variable}>
+      <body>
+        <Cursor />
+        {children}
+      </body>
     </html>
   );
 }

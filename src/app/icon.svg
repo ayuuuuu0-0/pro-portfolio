@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <rect width="64" height="64" rx="12" fill="#050A0E"/>
+  <!-- Left Eye Outer (Red border) -->
+  <path d="M12,24 C16,24 28,32 30,42 C24,42 16,36 12,24 Z" fill="#E53E3E"/>
+  <!-- Left Eye Inner (White) -->
+  <path d="M14,25 C17,25 26,32 28,40 C23,40 17,35 14,25 Z" fill="#FFFFFF"/>
+  <!-- Right Eye Outer (Red border) -->
+  <path d="M52,24 C48,24 36,32 34,42 C40,42 48,36 52,24 Z" fill="#E53E3E"/>
+  <!-- Right Eye Inner (White) -->
+  <path d="M50,25 C47,25 38,32 36,40 C41,40 47,35 50,25 Z" fill="#FFFFFF"/>
+</svg>
