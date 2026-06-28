@@ -102,10 +102,10 @@ export default function Hero() {
               <div style={{ marginTop: "2rem", animation: "fadeIn 0.8s ease forwards" }}>
                 <h1 className="hero-main-title">Ayush Ranjan</h1>
                 <p className="hero-subtitle">
-                  // SDE Intern @ Omniful &middot; Distributed Systems &middot; Go
+                  // SDE @ Omniful &middot; Distributed Systems &middot; Go
                 </p>
                 <p className="hero-desc-text">
-                  Designing resilient, multi-tenant backend architecture. Shipping white-label tracking systems, event-sourced messaging with Kafka, and highly optimized bulk data platforms.
+                  fullstack engineer who designs distributed backend systems. Building production infrastructure, developer tools, and cool stuff.
                 </p>
                 <div className="hero-actions">
                   <a href="#projects" className="btn-terminal">
