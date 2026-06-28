@@ -13,7 +13,7 @@ const dmMono = DM_Mono({
 export const metadata: Metadata = {
   title: "Ayush Ranjan | System Architect",
   description:
-    "Ayush Ranjan — SDE Intern @Omniful. Building distributed OMS/WMS systems, white-label tracking pipelines, and high-performance backend platforms.",
+    "Ayush Ranjan — full-stack engineer who designs distributed backend systems. Building production infrastructure, developer tools, and cool stuff.",
 };
 
 export default function RootLayout({
