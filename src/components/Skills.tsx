@@ -128,11 +128,11 @@ export default function Skills() {
           {/* Console Body */}
           <div
             style={{
-              padding: "2rem 2.5rem",
+              padding: "var(--skills-padding, 2rem 2.5rem)",
               fontFamily: "var(--font-mono)",
               display: "flex",
               flexDirection: "column",
-              gap: "2rem",
+              gap: "var(--skills-gap, 2rem)",
             }}
           >
             {categorySkills.map((cat) => (

@@ -95,6 +95,8 @@ export default function Experience() {
                           display: "flex",
                           alignItems: "center",
                           justifyContent: "space-between",
+                          flexWrap: "wrap",
+                          gap: "8px",
                           padding: "10px 16px",
                           background: isExpanded ? "var(--surface-2)" : "var(--surface)",
                           border: `1px solid ${isExpanded ? "var(--accent)" : "var(--border)"}`,

@@ -78,7 +78,7 @@ export default function Hero() {
     <section id="hero">
       <div className="hero-bg" />
       <div className="container" style={{ width: "100%" }}>
-        <div className="hero-grid" style={{ gridTemplateColumns: isBooted ? "1.2fr 0.8fr" : "1fr" }}>
+        <div className={`hero-grid ${isBooted ? "booted" : ""}`}>
           <div className="hero-content">
             <span className="section-tag">// initialization sequence</span>
             <div className="boot-terminal">

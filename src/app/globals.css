@@ -842,18 +842,75 @@ footer {
   position: relative;
 }
 
-/* Responsive grid layouts */
+/* Responsive grid layouts & variables */
+:root {
+  --skills-padding: 2rem 2.5rem;
+  --skills-gap: 2rem;
+}
+
 @media (max-width: 768px) {
+  :root {
+    --skills-padding: 1.2rem;
+    --skills-gap: 1.2rem;
+  }
+
+  .container {
+    padding: 0 1rem !important;
+  }
+
   .hero-grid,
   .about-grid,
   .skills-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
     gap: 2rem;
   }
   
   .boot-terminal {
     height: 300px;
   }
+
+  /* Hide raw unix columns on mobile for cleaner layouts */
+  .projects-table th:nth-child(1),
+  .projects-table td:nth-child(1),
+  .projects-table th:nth-child(2),
+  .projects-table td:nth-child(2),
+  .projects-table th:nth-child(3),
+  .projects-table td:nth-child(3) {
+    display: none;
+  }
+
+  /* Wrap navigation items vertically if space is tight */
+  .nav-body-bar {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 12px;
+  }
+
+  .nav-links-list {
+    gap: 1rem;
+    padding-left: 0;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .nav-status {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Ensure booted hero grid matches screen sizing */
+@media (min-width: 769px) {
+  .hero-grid.booted {
+    grid-template-columns: 1.2fr 0.8fr;
+  }
+}
+
+.terminal-panel-body,
+.project-detail-content,
+.contact-terminal-body {
+  word-break: break-word;
 }
 
 /* Blink effect */
