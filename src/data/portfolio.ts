@@ -106,6 +106,7 @@ export const PROJECTS = [
     stack: ["React", "Vite", "Node.js", "Express", "Piston", "Monaco Editor", "SQLite", "Tailwind"],
     links: {
       github: "https://github.com/ayuuuuu0-0/monster",
+      live:   "https://dsamonster.vercel.app",
     },
   },
   {
