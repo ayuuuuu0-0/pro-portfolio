@@ -74,6 +74,41 @@ export type ProjectBadge = "featured" | "backend" | "fullstack" | "flutter" | "h
 
 export const PROJECTS = [
   {
+    name: "Quorum",
+    badge: "featured" as ProjectBadge,
+    badgeLabel: "Featured",
+    description:
+      "Multi-agent AI orchestration system built with LangGraph and Gemini. Five specialized agents — Planner, Researcher, Coder, Critic, and Synthesizer — reach quorum on complex tasks via a confidence-scored voting pipeline. Supports Redis working memory, Postgres episodic memory, Qdrant semantic search, and Kafka event streaming.",
+    stack: ["Python", "LangGraph", "Gemini", "FastAPI", "Redis", "Postgres", "Kafka", "Qdrant"],
+    links: {
+      github: "https://github.com/ayuuuuu0-0/quorum",
+      live: "https://huggingface.co/spaces/ayuuuuu0-0/quorum",
+    },
+  },
+  {
+    name: "Arbiter",
+    badge: "featured" as ProjectBadge,
+    badgeLabel: "Featured",
+    description:
+      "Production-grade multi-tenant authorization engine inspired by Google Zanzibar. Five Spring Boot 3 microservices behind a Spring Cloud Gateway handle RS256 JWT auth, RBAC + ABAC policy evaluation, relation tuple checks, and immutable audit logging. Per-tenant rate limiting via Redis, circuit breakers via Resilience4j.",
+    stack: ["Java", "Spring Boot", "Spring Cloud Gateway", "PostgreSQL", "Redis", "Kafka", "JWT"],
+    links: {
+      github: "https://github.com/ayuuuuu0-0/arbiter",
+      live: "https://arbiter-java.vercel.app",
+    },
+  },
+  {
+    name: "Monster",
+    badge: "fullstack" as ProjectBadge,
+    badgeLabel: "Full-Stack",
+    description:
+      "DSA boss-rush game where a monster roasts your code mistakes in real time. 285 problems across topics, Monaco editor, sandboxed multi-language execution (C++, Java, Python) via Piston, a shrinking timer, and a taunting monster that gets meaner as you level up. Stats tracked with SQLite.",
+    stack: ["React", "Vite", "Node.js", "Express", "Piston", "Monaco Editor", "SQLite", "Tailwind"],
+    links: {
+      github: "https://github.com/ayuuuuu0-0/monster",
+    },
+  },
+  {
     name: "Prepio",
     badge: "featured" as ProjectBadge,
     badgeLabel: "Featured",
@@ -85,6 +120,7 @@ export const PROJECTS = [
       live: "http://prepio-ai.vercel.app/",
     },
   },
+
   {
     name: "Event Arcade",
     badge: "featured" as ProjectBadge,

@@ -52,7 +52,6 @@ export default function About() {
               </div>
               <div style={{ paddingLeft: "15px", color: "var(--text)", opacity: 0.9 }}>
                 <div>→ 5-agent LangGraph system (confidence dynamic routing &amp; auto-retry)</div>
-                <div>→ Cost-aware agent routing (Gemini Flash vs Pro), cutting cost by ~60%</div>
                 <div>→ Episodic memory via pgvector to embed &amp; retrieve task trajectories</div>
                 <div>→ Decoupled trajectory streams to Kafka &amp; sub-10ms Redis context reads</div>
                 <div style={{ marginTop: "4px", color: "var(--muted)" }}>→ WMS/OMS volumetric weight contracts &amp; white-label tracking pipelines</div>
@@ -102,7 +101,7 @@ export default function About() {
             </table>
             <h3 className="stats-card-title" style={{ marginBottom: 0 }}>└───────────────────────────────────┘</h3>
             <div style={{ fontSize: "11px", color: "var(--muted)", marginTop: "1.5rem", lineHeight: "1.4" }}>
-              <div>* Commit counts extracted from active white-label & WMS microservice logs. Uptime represents continuous production code deployments since June 2022.</div>
+              <div>* Commit counts extracted from active microservices logs. Uptime represents continuous production code deployments since June 2022.</div>
             </div>
           </div>
         </div>

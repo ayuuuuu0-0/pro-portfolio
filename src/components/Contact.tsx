@@ -128,6 +128,17 @@ function MiniGame() {
         userSelect: "none",
       }}
     >
+      {/* Background music autoplay when playing the game */}
+      <iframe
+        width="0"
+        height="0"
+        src="https://www.youtube.com/embed/Y-hO1jT7FOg?autoplay=1"
+        title="YouTube video player"
+        frameBorder="0"
+        allow="autoplay"
+        style={{ display: "none" }}
+      />
+
       {/* Score details */}
       <div
         style={{
