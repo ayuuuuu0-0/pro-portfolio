@@ -12,10 +12,10 @@ export default function Hero() {
   useEffect(() => {
     let currentLineIndex = 0;
     const bootSequence = [
-      { text: "> initializing portfolio.exe...", wait: 400 },
-      { text: "> loading profile...............[OK]", wait: 500 },
-      { text: "> mounting systems..............[OK]", wait: 400 },
-      { text: "> connecting to server.........", wait: 200, hasProgress: true },
+      { text: "> booting portfolio....................[OK]", wait: 380 },
+      { text: "> loading ayush.json...................[OK]", wait: 420 },
+      { text: "> syncing work & projects..............[OK]", wait: 350 },
+      { text: "> establishing connection..............", wait: 200, hasProgress: true },
     ];
 
     const addLine = (text: string) => {
@@ -38,16 +38,16 @@ export default function Hero() {
                 setShowProgress(false);
                 setLines((prev) => {
                   const updated = [...prev];
-                  updated[updated.length - 1] = "> connecting to server.........[OK]";
+                  updated[updated.length - 1] = "> establishing connection..............[OK]";
                   return updated;
                 });
                 currentLineIndex++;
                 setTimeout(runSequence, 300);
-              }, 450);
+              }, 400);
             } else {
               setProgressPercent(pct);
             }
-          }, 100);
+          }, 80);
         } else {
           addLine(step.text);
           currentLineIndex++;
@@ -55,10 +55,8 @@ export default function Hero() {
         }
       } else {
         addLine("");
-        addLine("AYUSH RANJAN — SYSTEM ARCHITECT");
-        addLine("Build things that don't break. Ship things that matter.");
+        addLine("// all systems ready.");
         addLine("");
-        addLine("[ process exited with code 0 ]");
         setIsBooted(true);
       }
     };
@@ -74,13 +72,26 @@ export default function Hero() {
     return ` [ ${bar} ${progressPercent}% ]`;
   };
 
+  const navSections = [
+    { id: "about", label: "about", hint: "// who I am" },
+    { id: "experience", label: "experience", hint: "// where I've worked" },
+    { id: "projects", label: "projects", hint: "// what I've built" },
+    { id: "contact", label: "contact", hint: "// let's talk" },
+  ];
+
+  const scrollTo = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <section id="hero">
       <div className="hero-bg" />
       <div className="container" style={{ width: "100%" }}>
         <div className={`hero-grid ${isBooted ? "booted" : ""}`}>
+          {/* LEFT: boot terminal runs, name always visible below it */}
           <div className="hero-content">
             <span className="section-tag">// initialization sequence</span>
+
             <div className="boot-terminal">
               {lines.map((line, idx) => {
                 if (line === "") return <div key={idx}>&nbsp;</div>;
@@ -98,14 +109,17 @@ export default function Hero() {
               {!isBooted && <span className="blink" />}
             </div>
 
+            {/* Identity — always visible immediately */}
+            <div style={{ marginTop: "2rem" }}>
+              <h1 className="hero-main-title">Ayush Ranjan</h1>
+            </div>
+
+            {/* Description + CTA buttons — fade in after boot completes */}
             {isBooted && (
-              <div style={{ marginTop: "2rem", animation: "fadeIn 0.8s ease forwards" }}>
-                <h1 className="hero-main-title">Ayush Ranjan</h1>
-                <p className="hero-subtitle">
-                  // SDE @ Omniful &middot; Distributed Systems &middot; Go
-                </p>
+              <div style={{ marginTop: "1.2rem", animation: "fadeIn 0.6s ease forwards" }}>
                 <p className="hero-desc-text">
-                  fullstack engineer who designs distributed backend systems. Building production infrastructure, developer tools, and cool stuff.
+                  fullstack engineer who designs distributed backend systems. Building production
+                  infrastructure, developer tools, and cool stuff.
                 </p>
                 <div className="hero-actions">
                   <a href="#projects" className="btn-terminal">
@@ -127,37 +141,86 @@ export default function Hero() {
             )}
           </div>
 
-          {isBooted && (
-            <div className="hero-terminal-aside" style={{ animation: "fadeIn 1.2s ease forwards" }}>
-              <div className="terminal-panel">
-                <div className="terminal-panel-header">
-                  <span>system_status.log</span>
-                  <span>uptime: 4y</span>
+          {/* RIGHT: terminal navigation panel */}
+          <div className="hero-terminal-aside" style={{ animation: "fadeIn 0.5s ease forwards" }}>
+            <div className="terminal-panel">
+              <div className="terminal-panel-header">
+                <span>terminal — navigate</span>
+                <span>zsh</span>
+              </div>
+              <div
+                className="terminal-panel-body"
+                style={{
+                  fontFamily: "var(--font-mono)",
+                  fontSize: "13px",
+                  color: "var(--text)",
+                  lineHeight: "1.85",
+                }}
+              >
+                <div style={{ color: "var(--accent)" }}>$ whoami</div>
+                <div style={{ paddingLeft: "10px", marginBottom: "1.4rem" }}>
+                  ayush ranjan{" "}
+                  <span style={{ color: "var(--muted)" }}>// sde &amp; system architect</span>
                 </div>
-                <div className="terminal-panel-body" style={{ fontFamily: "var(--font-mono)", fontSize: "12px", color: "var(--text)" }}>
-                  <div>$ systemctl status developer</div>
-                  <div style={{ color: "var(--accent)" }}>● developer.service - Ayush Ranjan Core</div>
-                  <div style={{ paddingLeft: "10px" }}>Loaded: loaded (/etc/systemd/system/developer.service)</div>
-                  <div style={{ paddingLeft: "10px" }}>Active: <span style={{ color: "var(--accent)" }}>active (running)</span> since Mon 2022-06-01</div>
-                  <div style={{ paddingLeft: "10px" }}>Main PID: 1337 (go-runner)</div>
-                  <div style={{ paddingLeft: "10px" }}>Tasks: 42 (limit: 4915)</div>
-                  <div style={{ paddingLeft: "10px" }}>Memory: 1.2G (shared)</div>
-                  <div>&nbsp;</div>
-                  <div>$ tail -n 4 /var/log/syslog</div>
-                  <div style={{ color: "var(--muted)" }}>Jun 28 00:45:12 langgraph-router: routing query to [PlannerAgent]</div>
-                  <div style={{ color: "var(--muted)" }}>Jun 28 00:45:13 planner-agent: low confidence (0.42) -&gt; re-routing to Gemini Pro</div>
-                  <div style={{ color: "var(--muted)" }}>Jun 28 00:45:16 pgvector-memory: retrieving episodic trajectories [similarity=0.88]</div>
-                  <div style={{ color: "var(--muted)" }}>Jun 28 00:45:17 kafka-producer: decoupling logs to trajectory-broker [100% OK]</div>
+
+                <div style={{ color: "var(--accent)" }}>$ ls --sections</div>
+                <div style={{ paddingLeft: "10px", marginTop: "6px" }}>
+                  {navSections.map((s) => (
+                    <div
+                      key={s.id}
+                      onClick={() => scrollTo(s.id)}
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "12px",
+                        padding: "6px 0",
+                        cursor: "none",
+                        transition: "color 0.15s ease",
+                      }}
+                      onMouseEnter={(e) => {
+                        const label = e.currentTarget.querySelector(
+                          ".terminal-nav-label"
+                        ) as HTMLElement;
+                        if (label) label.style.color = "var(--accent)";
+                      }}
+                      onMouseLeave={(e) => {
+                        const label = e.currentTarget.querySelector(
+                          ".terminal-nav-label"
+                        ) as HTMLElement;
+                        if (label) label.style.color = "var(--accent-2)";
+                      }}
+                    >
+                      <span style={{ color: "var(--muted)" }}>→</span>
+                      <span
+                        className="terminal-nav-label"
+                        style={{
+                          color: "var(--accent-2)",
+                          fontWeight: 600,
+                          minWidth: "90px",
+                          transition: "color 0.15s ease",
+                        }}
+                      >
+                        {s.label}
+                      </span>
+                      <span style={{ color: "var(--muted)", fontSize: "11px" }}>{s.hint}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
-          )}
+          </div>
         </div>
       </div>
       <style jsx global>{`
         @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(10px); }
-          to { opacity: 1; transform: translateY(0); }
+          from {
+            opacity: 0;
+            transform: translateY(10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
         }
       `}</style>
     </section>

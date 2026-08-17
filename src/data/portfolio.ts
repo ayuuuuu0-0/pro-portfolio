@@ -29,8 +29,8 @@ export const SKILLS = {
 
 export const EXPERIENCE = [
   {
-    active: true,
-    period: "Aug 2025 — Present · Gurugram, Haryana",
+    active: false,
+    period: "Aug 2025 — Jun 2026 · Gurugram, Haryana",
     role: "SDE Intern",
     company: "Omniful",
     url: "https://www.omniful.ai",

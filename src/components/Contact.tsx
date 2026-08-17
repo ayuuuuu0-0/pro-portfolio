@@ -272,20 +272,24 @@ export default function Contact() {
   const [history, setHistory] = useState<HistoryItem[]>([
     {
       type: "output",
-      text: "visitor@ayush:~$ connection established. sandbox shell v2.0.6 loaded. type 'help' for options.",
+      text: "visitor@ayush:~$ hey! type 'help' to see what you can do here.",
     },
   ]);
   const [inputVal, setInputVal] = useState("");
   const terminalBodyRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const quickCommands = ["help", "whoami", "contact", "status", "clear"];
+  const quickCommands = ["help", "about", "experience", "projects", "contact", "whoami", "status", "clear"];
 
   useEffect(() => {
     if (terminalBodyRef.current) {
       terminalBodyRef.current.scrollTop = terminalBodyRef.current.scrollHeight;
     }
   }, [history]);
+
+  const scrollToSection = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  };
 
   const executeCommand = (cmdStr: string) => {
     const cmd = cmdStr.trim();
@@ -306,17 +310,35 @@ export default function Contact() {
           <div style={{ fontFamily: "var(--font-mono)", fontSize: "13px" }}>
             Available commands:
             <br />
-            &nbsp;&nbsp;<span style={{ color: "var(--accent)" }}>whoami</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- profile summary and background
+            &nbsp;&nbsp;<span style={{ color: "var(--accent)" }}>about</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- go to the about section
             <br />
-            &nbsp;&nbsp;<span style={{ color: "var(--accent)" }}>contact</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- access email and social platform endpoints
+            &nbsp;&nbsp;<span style={{ color: "var(--accent)" }}>experience</span>&nbsp;&nbsp;&nbsp;&nbsp;- go to the experience section
             <br />
-            &nbsp;&nbsp;<span style={{ color: "var(--accent)" }}>status</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- current role &amp; contract availability
+            &nbsp;&nbsp;<span style={{ color: "var(--accent)" }}>projects</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- go to the projects section
             <br />
-            &nbsp;&nbsp;<span style={{ color: "var(--accent)" }}>chill</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- spawn a retro car jump mini-game 🕹️
+            &nbsp;&nbsp;<span style={{ color: "var(--accent)" }}>contact</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- show contact &amp; social links
             <br />
-            &nbsp;&nbsp;<span style={{ color: "var(--accent)" }}>clear</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- clear console output history
+            &nbsp;&nbsp;<span style={{ color: "var(--accent)" }}>whoami</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- who is visiting this portfolio
+            <br />
+            &nbsp;&nbsp;<span style={{ color: "var(--accent)" }}>status</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- current availability
+            <br />
+            &nbsp;&nbsp;<span style={{ color: "var(--accent)" }}>chill</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- play a retro mini-game 🕹️
+            <br />
+            &nbsp;&nbsp;<span style={{ color: "var(--accent)" }}>clear</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- clear the terminal
           </div>
         );
+        break;
+      case "about":
+        scrollToSection("about");
+        result = "→ Navigating to About section...";
+        break;
+      case "experience":
+        scrollToSection("experience");
+        result = "→ Navigating to Experience section...";
+        break;
+      case "projects":
+        scrollToSection("projects");
+        result = "→ Navigating to Projects section...";
         break;
       case "whoami":
         result = "→ Visitor / System Reviewer. You are exploring Ayush's developer portfolio sandbox environment.";
@@ -387,6 +409,7 @@ export default function Contact() {
       { type: "output", text: result },
     ]);
   };
+
 
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();

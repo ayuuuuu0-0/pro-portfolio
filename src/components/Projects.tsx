@@ -1,10 +1,19 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { PROJECTS, type ProjectBadge } from "@/data/portfolio";
 
 export default function Projects() {
   const [expandedProject, setExpandedProject] = useState<string | null>(null);
+  const detailRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (expandedProject && detailRef.current) {
+      setTimeout(() => {
+        detailRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 50);
+    }
+  }, [expandedProject]);
 
   const toggleProject = (name: string) => {
     setExpandedProject(expandedProject === name ? null : name);
@@ -81,7 +90,7 @@ export default function Projects() {
 
         {/* Detail Panel */}
         {expandedProject && (
-          <div style={{ marginTop: "1rem", animation: "slideDown 0.3s ease forwards" }}>
+          <div ref={detailRef} style={{ marginTop: "1rem", animation: "slideDown 0.3s ease forwards" }}>
             {PROJECTS.filter((p) => p.name === expandedProject).map((project) => (
               <div key={project.name} className="terminal-panel">
                 <div className="terminal-panel-header">
