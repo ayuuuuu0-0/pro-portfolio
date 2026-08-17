@@ -48,16 +48,7 @@ export const EXPERIENCE = [
       "Cut app load time by 40% via lazy loading, widget isolation, and overdraw elimination. Built live chat with WebSocket and HTTP polling fallback, handling reconnect logic and real-time state sync.",
     tags: ["Flutter", "WebSocket", "Performance"],
   },
-  {
-    active: false,
-    period: "March 2024 — April 2024 · Remote",
-    role: "React Developer Intern",
-    company: "PeriData",
-    url: "https://peridata.tech/",
-    description:
-      "Contributed to the company's web platform. Worked on real-world React projects, deepening production coding practices and team collaboration.",
-    tags: ["React", "JavaScript"],
-  },
+
   {
     active: false,
     period: "June 2023 — Aug 2023 · Remote",
