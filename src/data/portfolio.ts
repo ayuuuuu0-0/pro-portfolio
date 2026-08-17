@@ -65,15 +65,27 @@ export type ProjectBadge = "featured" | "backend" | "fullstack" | "flutter" | "h
 
 export const PROJECTS = [
   {
-    name: "Quorum",
+    name: "Prepio",
     badge: "featured" as ProjectBadge,
     badgeLabel: "Featured",
     description:
-      "Multi-agent AI orchestration system built with LangGraph and Gemini. Five specialized agents — Planner, Researcher, Coder, Critic, and Synthesizer — reach quorum on complex tasks via a confidence-scored voting pipeline. Supports Redis working memory, Postgres episodic memory, Qdrant semantic search, and Kafka event streaming.",
-    stack: ["Python", "LangGraph", "Gemini", "FastAPI", "Redis", "Postgres", "Kafka", "Qdrant"],
+      "Architected a 6-service Go microservices backend for a gamified career progression platform. Integrated PostgreSQL with automated schema migrations, implemented Redis-based caching and rate-limiting, and utilized Kafka for event-driven messaging. Built a concept-level evaluation",
+    stack: ["Go", "NextJS", "Flutter", "Postgres", "Redis", "Kafka"],
     links: {
-      github: "https://github.com/ayuuuuu0-0/quorum",
-      live: "https://huggingface.co/spaces/ayuuuuu0-0/quorum",
+      github: "https://github.com/ayuuuuu0-0/prepio",
+      live: "http://prepio-ai.vercel.app/",
+    },
+  },
+  {
+    name: "Event Arcade",
+    badge: "featured" as ProjectBadge,
+    badgeLabel: "Featured",
+    description:
+      "Real-time arcade engine on a single-writer goroutine pattern. Match engines push events via channels to one append-only log, eliminating lock contention. Deterministic seeded RNG for auditable outcomes. SHA-256 chained block store for tamper detection, Redis sorted sets for sub-100ms leaderboard updates.",
+    stack: ["Go", "WebSocket", "Redis", "Goroutines", "SHA-256"],
+    links: {
+      github: "https://github.com/ayuuuuu0-0/event_arcade",
+      live: "https://eventarcade.vercel.app",
     },
   },
   {
@@ -89,6 +101,30 @@ export const PROJECTS = [
     },
   },
   {
+    name: "College Cart",
+    badge: "flutter" as ProjectBadge,
+    badgeLabel: "Flutter",
+    description:
+      "Flutter marketplace for college students to buy and sell goods. User auth, profiles, and multimedia post creation.",
+    stack: ["Flutter", "Firebase", "Auth"],
+    links: {
+      github: "https://github.com/ayuuuuu0-0/Uniconnect",
+      live: "https://college-cart.vercel.app/",
+    },
+  },
+  {
+    name: "Quorum",
+    badge: "featured" as ProjectBadge,
+    badgeLabel: "Featured",
+    description:
+      "Multi-agent AI orchestration system built with LangGraph and Gemini. Five specialized agents — Planner, Researcher, Coder, Critic, and Synthesizer — reach quorum on complex tasks via a confidence-scored voting pipeline. Supports Redis working memory, Postgres episodic memory, Qdrant semantic search, and Kafka event streaming.",
+    stack: ["Python", "LangGraph", "Gemini", "FastAPI", "Redis", "Postgres", "Kafka", "Qdrant"],
+    links: {
+      github: "https://github.com/ayuuuuu0-0/quorum",
+      live: "https://huggingface.co/spaces/ayuuuuu0-0/quorum",
+    },
+  },
+  {
     name: "Monster",
     badge: "fullstack" as ProjectBadge,
     badgeLabel: "Full-Stack",
@@ -97,32 +133,7 @@ export const PROJECTS = [
     stack: ["React", "Vite", "Node.js", "Express", "Piston", "Monaco Editor", "SQLite", "Tailwind"],
     links: {
       github: "https://github.com/ayuuuuu0-0/monster",
-      live:   "https://dsamonster.vercel.app",
-    },
-  },
-  {
-    name: "Prepio",
-    badge: "featured" as ProjectBadge,
-    badgeLabel: "Featured",
-    description:
-      "Architected a 6-service Go microservices backend for a gamified career progression platform. Integrated PostgreSQL with automated schema migrations, implemented Redis-based caching and rate-limiting, and utilized Kafka for event-driven messaging. Built a concept-level evaluation",
-    stack: ["Go", "NextJS", "Flutter", "Postgres", "Redis", "Kafka"],
-    links: {
-      github: "https://github.com/ayuuuuu0-0/prepio",
-      live: "http://prepio-ai.vercel.app/",
-    },
-  },
-
-  {
-    name: "Event Arcade",
-    badge: "featured" as ProjectBadge,
-    badgeLabel: "Featured",
-    description:
-      "Real-time arcade engine on a single-writer goroutine pattern. Match engines push events via channels to one append-only log, eliminating lock contention. Deterministic seeded RNG for auditable outcomes. SHA-256 chained block store for tamper detection, Redis sorted sets for sub-100ms leaderboard updates.",
-    stack: ["Go", "WebSocket", "Redis", "Goroutines", "SHA-256"],
-    links: {
-      github: "https://github.com/ayuuuuu0-0/event_arcade",
-      live: "https://eventarcade.vercel.app",
+      live: "https://dsamonster.vercel.app",
     },
   },
   {
@@ -182,25 +193,5 @@ export const PROJECTS = [
     stack: ["React Native", "GPS", "SMS API"],
     links: { github: "https://github.com/ayuuuuu0-0/SheSecure" },
   },
-  {
-    name: "College Cart",
-    badge: "flutter" as ProjectBadge,
-    badgeLabel: "Flutter",
-    description:
-      "Flutter marketplace for college students to buy and sell goods. User auth, profiles, and multimedia post creation.",
-    stack: ["Flutter", "Firebase", "Auth"],
-    links: {
-      github: "https://github.com/ayuuuuu0-0/Uniconnect",
-      live: "https://college-cart.vercel.app/",
-    },
-  },
-  {
-    name: "NowAcquire App",
-    badge: "flutter" as ProjectBadge,
-    badgeLabel: "Flutter",
-    description:
-      "Flutter stock trading app built during my 2023 internship. Real-time price feeds, JWT auth, KYC validation flow, and MongoDB aggregation pipelines for portfolio queries.",
-    stack: ["Flutter", "MongoDB", "JWT", "WebSocket"],
-    links: { github: "https://github.com/ayuuuuu0-0/now-acquire" },
-  },
 ] as const;
+
